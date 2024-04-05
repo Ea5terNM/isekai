@@ -1,0 +1,161 @@
+{% extends 'app_general/components/base.html'%}
+{% load static %}
+{% block title %} {{ user.username}} Profile {% endblock title %}
+{% block content %}
+<form action="{% url 'profile' %}" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <h3>Profile</h3>
+    {{form.first_name.label_tag}}
+    {{form.first_name}}
+    {{form.first_name.errors}}
+
+    {{form.last_name.label_tag}}
+    {{form.last_name}}
+    {{form.last_name.errors}}
+
+    {{extended_form.address.label_tag}}
+    {{extended_form.address}}
+    {{extended_form.address.errors}}
+
+    {{extended_form.phone.label_tag}}
+    {{extended_form.phone}}
+    {{extended_form.phone.errors}}
+    <p>
+        <button type="submit">Update</button>
+    </p>
+    <div >
+        <a style="margin: 0 auto;" href="{% url 'dashboard' %}" >Dashboard</a>
+        
+    </div>
+    <div >
+        <a style="margin: 0 auto;" href="{% url 'Home' %}" >Home</a>
+    </div>
+	<div >
+        <a style="margin: 0 auto;" href="{% url 'password_reset' %}" >password password_reset</a>
+    </div>
+	<div >
+        <a style="margin: 0 auto;" href="{% url 'shopp' %}" >shopp</a>
+    </div>
+</form>
+ <p>
+        <button type="submit">Update</button>
+    </p>
+    <div >
+        <a style="margin: 0 auto;" href="{% url 'dashboard' %}" >Dashboard</a>
+        
+    </div>
+    <div >
+        <a style="margin: 0 auto;" href="{% url 'Home' %}" >Home</a>
+    </div>
+	<div >
+        <a style="margin: 0 auto;" href="{% url 'password_reset' %}" >password password_reset</a>
+    </div>
+	<div >
+        <a style="margin: 0 auto;" href="{% url 'shopp' %}" >shopp</a>
+    </div>
+	
+{% endblock content %}	
+{% block js %}
+
+<!--===============================================================================================-->	
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/slick/slick.min.js' %}"></script>
+	<script src="{% static 'js/slick-custom.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/parallax100/parallax100.js' %}"></script>
+	<script>
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+		        delegate: 'a', // the selector for gallery item
+		        type: 'image',
+		        gallery: {
+		        	enabled:true
+		        },
+		        mainClass: 'mfp-fade'
+		    });
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/isotope/isotope.pkgd.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/sweetalert/sweetalert.min.js' %}"></script>
+	<script>
+		$('.js-addwish-b2').on('click', function(e){
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %}"></script>
+{% endblock js %}

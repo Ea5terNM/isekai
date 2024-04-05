@@ -1,0 +1,40 @@
+<style>
+    .white-text {
+      color: white;
+    }
+  </style>
+<!-- Topbar -->
+<div class="top-bar">
+    <div class="content-topbar flex-sb-m h-full container">
+        <div class="left-top-bar">
+            ที่ 1 เรื่องของถูก
+        </div>
+
+        <div class="right-top-bar flex-w h-full">
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'profile' %}" class="flex-c-m trans-04 p-lr-25">
+                    {% csrf_token %}
+                    <button type="submit"class="white-text">{{user.username}}</button> 
+                </a>
+        
+                
+                <form method="post" action="{% url 'logout' %}"class="flex-c-m trans-04 p-lr-25">
+                    {% csrf_token %}
+                    <button type="submit"class="white-text">logout</button>
+                </form>
+                
+
+            {% else %}
+                <a href="{% url 'login' %}" class="flex-c-m trans-04 p-lr-25">
+                    เข้าสู่ระบบ
+                </a>
+
+                <a href="{% url 'register' %}" class="flex-c-m trans-04 p-lr-25">
+                    สมัครสมาชิก
+                </a>
+
+            {% endif %}
+        </div>
+    </div>
+</div>

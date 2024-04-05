@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock title %}Ahrishop</title>
+    {% include 'app_general/components/site_stylesheet.html' %}
+</head>
+
+<body class="animsition">
+{% include 'app_general/components/site_topbar.html' %}
+{% include 'app_general/components/site_header.html' %}
+{% include 'app_general/components/site_sidebar.html' %}
+{% include 'app_general/components/site_cart.html' %}
+
+{% block content  %} 
+{% endblock content %}
+
+{% include 'app_general/components/site_footer.html' %}
+{% include 'app_general/components/site_backtotop.html' %}
+{% block js  %}
+{% endblock js %}
+
+</body>
+</html>
